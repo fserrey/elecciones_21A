@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <title>Elecciones Parlamento Galicia 2024 - La Vanguardia</title>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css" rel="stylesheet" type="text/css"/>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css" rel="stylesheet" type="text/css"/>
+  <link href="./styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <div class="map-wrapper">
+    <div id="map-container"></div>
+
+    <!-- map controls -->
+    <div id="custom-controls" class="map-overflow map-controls hidden">
+      <div class="map-overflow-wrap">
+        <div class="map-controls-hint">Selecciona un mapa:</div>
+        <div class="map-controls-years">
+          <button class="map-control map-control--year js-year is-active" data-year="2024">2024</button>
+          <button class="map-control map-control--year js-year" data-year="2020">2020</button>
+          <!-- <button class="map-control map-control--year js-year" data-year="diff">Diff</button> -->
+        </div>
+        <div class="map-controls-fill">
+          <button class="map-control map-control--fill js-control is-active" data-fill="winner">Ganador</button>
+          <button class="map-control map-control--fill js-control" data-fill="pp">PP</button>
+          <button class="map-control map-control--fill js-control" data-fill="bng">BNG</button>
+          <button class="map-control map-control--fill js-control" data-fill="psoe">PSOE</button>
+          <button class="map-control map-control--fill js-control" data-fill="sumar">Sumar</button>
+          <button class="map-control map-control--fill js-control" data-fill="vox">Vox</button>
+          <button class="map-control map-control--fill js-control" data-fill="bloques">Bloques</button>
+        </div>
+      </div>
+    </div>
+    <!-- end map controls -->
+
+    <!-- map zoom out -->
+    <div id="custom-buttons" class="map-overflow map-buttons hidden">
+      <button id="zoom-out" class="zoom-out" title="Zoom out">
+        <img src="img/spain.svg" alt="Zoom out">
+      </button>
+    </div>
+    <!-- end map zoom out -->
+
+    <!-- legend -->
+    <div id="legends" class="map-legends hidden">
+      <div class="map-legends-wrap">
+        <header id="legends-head" class="map-legends-header"></header>
+        <div id="legends-body" class="map-legends-body"></div>
+      </div>
+    </div>
+    <!-- end legend -->
+
+  </div>
+  <script src="./map.js"></script>
+  <script src="./partyColors.js"></script>
+  <script>
+    let mapLoaded = false;
+    mapboxgl.clearStorage();
+
+    const loadMap = () => {
+      const isMobile = window.innerWidth < 900;
+      const map = new ElectionMap('pk.eyJ1IjoiZnNlcnJleSIsImEiOiJjbHVyNm9uMzEwNDJrMmlxcmllbnk0N2VzIn0.uoB9jWL2GB82Lzv12t4e1Q', {
+        container: 'map-container',
+        style: 'mapbox://styles/laur05/clss29bel00v901qx6zdv602j?fresh=true',
+        source: 'mapbox://fserrey.electionseuskadi2020_adm4?fresh=true',
+        sourceLayer: 'electionseuskadi2020_adm4',
+        center: [-7.65, 42.86],
+        zoom: isMobile ? 7 : 7.5,
+        minZoom: isMobile ? 5.5 : 6,
+        initialSelect: 'winner2024',
+        // hash: true,
+        scrollZoom: true,
+        years: [2020, 2024],
+        parties: ['PP', 'PSOE', 'PNV', 'EH-Bildu', 'VOX'],
+        partyColors: window._partyColors,
+      });
+      mapLoaded = true;
+    }
+
+    // Remove Mapbox service worker cache
+    if (caches && caches.keys()) {
+      caches.keys().then((keys) => {
+        Promise.all(keys.filter((k) => k === 'mapbox-tiles').map((k) => caches.delete(k)))
+          .then(() => { loadMap() })
+          .catch(() => { loadMap() });
+      })
+    } else loadMap();
+
+    // Fallback if map has not been loaded
+    setTimeout(() => {
+      if (!mapLoaded) loadMap();
+    }, 4000);
+    
+  </script>
+</body>
+</html>
