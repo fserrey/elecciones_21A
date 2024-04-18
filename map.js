@@ -115,16 +115,28 @@ class ElectionMap {
     });
   }
 
+//  setLegendLabels(years, parties) {
+//    this.legendLabels = {
+//      winnerdiff: 'Partido ganador',
+//      bloquesdiff: 'Cambio en porcentaje de voto a bloque',
+//    };
+//    years.forEach((year) => {
+//      this.legendLabels[`bloques${year}`] = 'Porcentaje de voto a bloque';
+//      parties.forEach((party) => {
+//        this.legendLabels[`${party.toLowerCase()}${year}`] = 'Porcentaje de voto';
+//        this.legendLabels[`${party.toLowerCase()}diff`] = 'Cambio en porcentaje de voto';
+//      });
+//    });
+//  }
   setLegendLabels(years, parties) {
-    this.legendLabels = {
-      winnerdiff: 'Partido ganador',
-      bloquesdiff: 'Cambio en porcentaje de voto a bloque',
-    };
+    this.legendLabels = {};
     years.forEach((year) => {
+      this.legendLabels[`winner${year}`] = 'Ganador del año ' + year;
       this.legendLabels[`bloques${year}`] = 'Porcentaje de voto a bloque';
       parties.forEach((party) => {
-        this.legendLabels[`${party.toLowerCase()}${year}`] = 'Porcentaje de voto';
-        this.legendLabels[`${party.toLowerCase()}diff`] = 'Cambio en porcentaje de voto';
+        let partyKey = party.toLowerCase();
+        this.legendLabels[`${partyKey}${year}`] = `Porcentaje de voto para ${party} en ${year}`;
+        this.legendLabels[`${partyKey}diff${year}`] = `Cambio en porcentaje de voto para ${party}`;
       });
     });
   }
@@ -458,7 +470,7 @@ class ElectionMap {
   };
 
   setMapFill() {
-    const fillName = `${this.currentFill}${this.currentYear}`;
+    const fillName = `${this.currentFill.toLowerCase()}${this.currentYear}`;
     this.map.setFilter(this.fillLayerId, this.fillLayerFilter[fillName]);
     this.map.setPaintProperty(this.fillLayerId, 'fill-color', this.fillLayerFillColor[fillName]);
     this.map.setPaintProperty(this.fillLayerId, 'fill-opacity', this.fillLayerFillOpacity[fillName]);

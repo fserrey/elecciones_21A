@@ -15,7 +15,7 @@ window._partyColors = {
     "GEROABAI": "#F75E42",
     "PNV": "#16823b", // #00902F
     "BILDU": "#c7d892", // #08A3A6
-    "EHBILDU": "#c7d892", // #08A3A6
+    "EH-BILDU": "#c7d892", // #08A3A6
     "PRC": "#C2CE0A",
     "FORO": "#17375e",
     "BNG": "#76B2E1",
