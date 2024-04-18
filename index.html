@@ -29,9 +29,11 @@
         </div>
         <div class="map-controls-fill">
           <button class="map-control map-control--fill js-control is-active" data-fill="winner">Ganador</button>
-          <button class="map-control map-control--fill js-control" data-fill="pp">PP</button>
-          <button class="map-control map-control--fill js-control" data-fill="bng">BNG</button>
+          <button class="map-control map-control--fill js-control" data-fill="PNV">PNV</button>
+          <button class="map-control map-control--fill js-control" data-fill="EH-Bildu">EH-Bildu</button>
           <button class="map-control map-control--fill js-control" data-fill="psoe">PSOE</button>
+          <button class="map-control map-control--fill js-control" data-fill="PP">PP</button>
+          <button class="map-control map-control--fill js-control" data-fill="podemos">Podemos</button>
           <button class="map-control map-control--fill js-control" data-fill="sumar">Sumar</button>
           <button class="map-control map-control--fill js-control" data-fill="vox">Vox</button>
           <button class="map-control map-control--fill js-control" data-fill="bloques">Bloques</button>
@@ -68,10 +70,10 @@
       const isMobile = window.innerWidth < 900;
       const map = new ElectionMap('pk.eyJ1IjoiZnNlcnJleSIsImEiOiJjbHVyNm9uMzEwNDJrMmlxcmllbnk0N2VzIn0.uoB9jWL2GB82Lzv12t4e1Q', {
         container: 'map-container',
-        style: 'mapbox://styles/laur05/clss29bel00v901qx6zdv602j?fresh=true',
-        source: 'mapbox://fserrey.electionseuskadi2020_adm4?fresh=true',
+        style: 'mapbox://styles/fserrey/clv4bojav00hd01qvb49tfgdh',
+        source: 'mapbox://fserrey.electionseuskadi2020_adm4?fresh=true', 
         sourceLayer: 'electionseuskadi2020_adm4',
-        center: [-7.65, 42.86],
+        center: [-2.95, 43.26],
         zoom: isMobile ? 7 : 7.5,
         minZoom: isMobile ? 5.5 : 6,
         initialSelect: 'winner2024',

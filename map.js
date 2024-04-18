@@ -1,7 +1,7 @@
 class ElectionMap {
   fillLayerId = 'fillLayer';
   lineLayerId = 'lineLayer';
-  sourceId = 'adm7';
+  sourceId = 'adm4';
   hoveredStateId = null;
   currentYear = '2024';
   currentFill = 'winner';

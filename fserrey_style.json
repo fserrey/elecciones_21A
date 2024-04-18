@@ -1,0 +1,64 @@
+{
+    "version": 8,
+    "name": "Test Style",
+    "metadata": {
+      "mapbox:autocomposite": true
+    },
+    "sources": {
+      "composite": {
+        "url": "mapbox://mapbox.mapbox-streets-v8",
+        "type": "vector"
+      }
+    },
+    "layers": [
+      {
+        "id": "background",
+        "type": "background",
+        "paint": {
+          "background-color": "#ebeae8"
+        }
+      },
+      {
+        "id": "water",
+        "source": "composite",
+        "source-layer": "water",
+        "type": "fill",
+        "paint": {
+          "fill-color": "#dbdada"
+        }
+      },
+      {
+        "id": "landcover",
+        "source": "composite",
+        "source-layer": "landcover",
+        "type": "fill",
+        "paint": {
+          "fill-color": "#ebeae8",
+          "fill-opacity": 0.3
+        }
+      },
+      {
+        "id": "places",
+        "source": "composite",
+        "source-layer": "place_label",
+        "type": "symbol",
+        "layout": {
+          "text-field": ["get", "name_en"],
+          "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Regular"],
+          "text-size": {
+            "base": 1,
+            "stops": [
+              [6, 12],
+              [12, 22]
+            ]
+          }
+        },
+        "paint": {
+          "text-color": "#000",
+          "text-halo-color": "#fff",
+          "text-halo-width": 2
+        }
+      }
+    ]
+  }
+  
