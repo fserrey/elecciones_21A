@@ -434,8 +434,10 @@ class ElectionMap {
   }
 
   setLegend(scaleName) {
+    console.log("Setting legend for:", scaleName);
     if (!this.legendLabels[scaleName]) {
       // if clicked legend it's empty, hide legends box
+      console.log("No legend labels found for:", scaleName);
       document.getElementById('legends').classList.add('hidden');
       return;
     }
