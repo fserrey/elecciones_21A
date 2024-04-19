@@ -47,7 +47,7 @@
     <!-- map zoom out -->
     <div id="custom-buttons" class="map-overflow map-buttons hidden">
       <button id="zoom-out" class="zoom-out" title="Zoom out">
-        <img src="img/spain.svg" alt="Zoom out">
+        <img src="img/euskadi.svg" alt="Zoom out">
       </button>
     </div>
     <!-- end map zoom out -->
@@ -72,9 +72,9 @@
       const isMobile = window.innerWidth < 900;
       const map = new ElectionMap('pk.eyJ1IjoiZnNlcnJleSIsImEiOiJjbHVyNm9uMzEwNDJrMmlxcmllbnk0N2VzIn0.uoB9jWL2GB82Lzv12t4e1Q', {
         container: 'map-container',
-        style: 'mapbox://styles/laur05/cli8rqg7a02qn01pr8qu2gh5e?fresh=true',
-        source: 'mapbox://fserrey.electionseuskadi2020_adm4?fresh=true', 
-        sourceLayer: 'electionseuskadi2020_adm4',
+        style: 'mapbox://styles/laur05/clv6v11hs00mc01oc38ss9aqk?fresh=true', //'mapbox://styles/laur05/cli8rqg7a02qn01pr8qu2gh5e?fresh=true',
+        source: 'mapbox://fserrey.electionseuskadi2024_adm4?fresh=true', //'mapbox://fserrey.electionseuskadi2020_adm4?fresh=true', 
+        sourceLayer: 'electionseuskadi2024_adm4',
         center: [-2.95, 43.26],
         zoom: isMobile ? 7 : 7.5,
         minZoom: isMobile ? 5.5 : 6,
