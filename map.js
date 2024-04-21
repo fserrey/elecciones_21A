@@ -73,6 +73,9 @@ class ElectionMap {
       this.addButtonsListeners();
       this.showButtons();
       this.setLegend(this.initialSelect);
+      this.logInitialParties();  // Call the logging function when the map is loaded
+      this.logSourceData();
+
     });
     this.map.on('mousemove', this.fillLayerId, (e) => {
       this.updateHoverState(e);
@@ -86,6 +89,7 @@ class ElectionMap {
     });
   }
 
+  
   getYearKey(i) {
     return i === 0 ? 'last' : 'curr';
   }
@@ -453,6 +457,7 @@ class ElectionMap {
       document.getElementById('legends').classList.add('hidden');
       return;
     }
+
   
     document.getElementById('legends').classList.remove('hidden');
     document.getElementById('legends-head').innerHTML = this.legendLabels[scaleName];
@@ -470,6 +475,7 @@ class ElectionMap {
   };
 
   setMapFill() {
+  //
     const fillName = `${this.currentFill.toLowerCase()}${this.currentYear}`;
     this.map.setFilter(this.fillLayerId, this.fillLayerFilter[fillName]);
     this.map.setPaintProperty(this.fillLayerId, 'fill-color', this.fillLayerFillColor[fillName]);
